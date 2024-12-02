@@ -123,7 +123,7 @@ class MapViewModel @Inject constructor(
         if (searchType == SearchType.GEO.value && point != null) {
             searchFactory.submit(point, zoom, SearchOptions().apply {
                 searchTypes = searchType
-                resultPageSize = 47
+                resultPageSize = 20
             }, searchSessionListener)
         } else if (keyword != null && visibleRegion != null) {
             searchFactory.submit(
@@ -131,7 +131,7 @@ class MapViewModel @Inject constructor(
                 VisibleRegionUtils.toPolygon(visibleRegion),
                 SearchOptions().apply {
                     searchTypes = searchType
-                    resultPageSize = 5
+                    resultPageSize = 20
                 },
                 searchSessionListener
             )

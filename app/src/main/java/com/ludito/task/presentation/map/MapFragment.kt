@@ -76,17 +76,12 @@ class MapFragment : Fragment() {
         this@MapFragment.mapView = mapView
         placemark = mapView.mapWindow.map.mapObjects.addPlacemark()
 
-        if (args.latitude != 0.0f && args.longitude != 0.0f) {
-            vm.searchLocation(
-                zoom = 0,
-                searchType = SearchType.GEO.value,
-                point = Point(args.latitude.toDouble(), args.longitude.toDouble())
-            )
-        }
-
-        if (requireActivity().hasRequiredLocationPermissions() && args.latitude == 0.0f)
+        if (requireActivity().hasRequiredLocationPermissions() && vm.uiState.value.lastLocation == null)
             setLastLocation()
+
         setOnTapLocationListener()
+        setBookmarkedAddress()
+
 
         imgNavigate.setOnClickListener {
             if (requireActivity().hasRequiredLocationPermissions()) {
@@ -98,6 +93,16 @@ class MapFragment : Fragment() {
 
         etMap.setOnClickListener {
             showSearchDialog()
+        }
+    }
+
+    private fun setBookmarkedAddress() {
+        if (args.latitude != 0.0f && args.longitude != 0.0f) {
+            vm.searchLocation(
+                zoom = 0,
+                searchType = SearchType.GEO.value,
+                point = Point(args.latitude.toDouble(), args.longitude.toDouble())
+            )
         }
     }
 
@@ -269,8 +274,9 @@ class MapFragment : Fragment() {
                     vm.searchLocation(
                         searchType = SearchType.BIZ.value,
                         keyword = it,
-                        visibleRegion = visibleRegion
-                    )
+                        visibleRegion = visibleRegion,
+
+                        )
                 else vm.sendErrorEvent("Searching is not accessible without location permission")
             },
             onDialogDismissed = {
