@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigation() {
+        val navOptions: NavOptions =
+            NavOptions.Builder().setPopUpTo(R.id.mapFragment, true).build()
         bottomNavigationView = findViewById(R.id.bottom_nav_bar)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.container_map) as NavHostFragment
@@ -69,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                         BookmarkFragmentDirections.actionBookmarkToMap(
                             0f,
                             0f
-                        )
+                        ), navOptions
                     )
                 }
 

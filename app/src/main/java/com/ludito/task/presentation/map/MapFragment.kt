@@ -75,6 +75,7 @@ class MapFragment : Fragment() {
     private fun initView() = with(binding) {
         this@MapFragment.mapView = mapView
         placemark = mapView.mapWindow.map.mapObjects.addPlacemark()
+
         if (args.latitude != 0.0f && args.longitude != 0.0f) {
             vm.searchLocation(
                 zoom = 0,

@@ -32,7 +32,7 @@
         android:name="com.ludito.task.presentation.bookmark.BookmarkFragment"
         android:label="main_bookmark"
         app:popUpTo="@id/mapFragment"
-        app:popUpToSaveState="true"
+        app:popUpToInclusive="true"
         tools:layout="@layout/fragment_bookmark">
 
         <action
