@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dialog"
+    tools:context=".presentation.map.dialog.SearchDialogFragment">
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_map"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/bg_et_search_map"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="12dp"
+        android:drawableTint="@color/primaryColor"
+        android:elevation="10dp"
+        android:fontFamily="@font/font_roboto"
+        android:hint="@string/placeholder_search"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:lines="1"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/primaryColor"
+        android:textColorHint="@color/primaryColor"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="14dp"
+        android:background="#F1F1F1"
+        app:layout_constraintTop_toBottomOf="@id/et_map" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_places"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/view_line"
+        tools:listitem="@layout/item_place" />
+
+    <TextView
+        android:id="@+id/txt_empty_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_roboto"
+        android:text="List is empty"
+        android:textColor="@color/secondaryColor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_line" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

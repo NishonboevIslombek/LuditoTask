@@ -1,0 +1,22 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Task" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Task" parent="Base.Theme.Task">
+        <item name="bottomSheetDragHandleStyle">
+            @style/Widget.MaterialComponents.BottomSheet.DragHandle
+        </item>
+
+
+    </style>
+    <style name="BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetModal</item>
+    </style>
+
+    <style name="BottomSheetModal" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>

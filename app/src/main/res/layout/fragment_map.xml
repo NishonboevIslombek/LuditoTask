@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".presentation.map.MapFragment">
+
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_map"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_et_search_map"
+        android:cursorVisible="false"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="12dp"
+        android:drawableTint="@color/primaryColor"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:fontFamily="@font/font_roboto"
+        android:hint="Поиск"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/primaryColor"
+        android:textColorHint="@color/primaryColor"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_navigate"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/bg_img_navigate"
+        android:padding="18dp"
+        android:src="@drawable/ic_navigate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

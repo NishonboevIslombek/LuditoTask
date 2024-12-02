@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.MaterialComponents.BottomSheet.DragHandle" parent="Widget.Material3.BottomSheet.DragHandle">
+        <item name="tint">#D0CFCF</item>
+    </style>
+
+    <style name="CustomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/places_ratingbar</item>
+        <item name="android:minHeight">16dp</item>
+        <item name="android:maxHeight">16dp</item>
+    </style>
+</resources>
