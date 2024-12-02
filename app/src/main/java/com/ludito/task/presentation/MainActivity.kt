@@ -14,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ludito.task.R
+import com.ludito.task.databinding.ActivityMainBinding
 import com.ludito.task.domain.core.Permissions
 import com.ludito.task.presentation.bookmark.BookmarkFragmentDirections
 import com.ludito.task.presentation.map.MapFragmentDirections
@@ -26,13 +27,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
-    private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MapKitFactory.initialize(this)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -41,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
         window.statusBarColor = ContextCompat.getColor(this, R.color.onPrimaryColor)
         window.navigationBarColor = ContextCompat.getColor(this, R.color.onPrimaryColor)
+        binding.bottomNavBar.menu.findItem(R.id.main_map).isChecked = true
 
         if (!hasRequiredLocationPermissions()) requestPermissions()
         else setupBottomNavigation()
@@ -49,23 +53,21 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNavigation() {
         val navOptions: NavOptions =
             NavOptions.Builder().setPopUpTo(R.id.mapFragment, true).build()
-        bottomNavigationView = findViewById(R.id.bottom_nav_bar)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.container_map) as NavHostFragment
 
         navController = navHostFragment.navController
-        bottomNavigationView.setupWithNavController(navController)
+        binding.bottomNavBar.setupWithNavController(navController)
 
-        bottomNavigationView.menu.findItem(R.id.main_map).isChecked = true
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.mapFragment -> bottomNavigationView.menu.findItem(R.id.main_map).isChecked =
+                R.id.mapFragment ->  binding.bottomNavBar.menu.findItem(R.id.main_map).isChecked =
                     true
             }
         }
 
-        bottomNavigationView.setOnItemSelectedListener {
-            if (it.itemId == bottomNavigationView.selectedItemId || it.itemId == R.id.main_profile) return@setOnItemSelectedListener false
+        binding.bottomNavBar.setOnItemSelectedListener {
+            if (it.itemId ==  binding.bottomNavBar.selectedItemId || it.itemId == R.id.main_profile) return@setOnItemSelectedListener false
             when (it.itemId) {
                 R.id.main_map -> {
                     navController.navigate(

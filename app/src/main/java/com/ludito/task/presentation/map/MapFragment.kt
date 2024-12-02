@@ -265,11 +265,13 @@ class MapFragment : Fragment() {
                 binding.etMap.setText(item.name)
             },
             onSearchClicked = {
-                vm.searchLocation(
-                    searchType = SearchType.BIZ.value,
-                    keyword = it,
-                    visibleRegion = visibleRegion
-                )
+                if (requireActivity().hasRequiredLocationPermissions())
+                    vm.searchLocation(
+                        searchType = SearchType.BIZ.value,
+                        keyword = it,
+                        visibleRegion = visibleRegion
+                    )
+                else vm.sendErrorEvent("Searching is not accessible without location permission")
             },
             onDialogDismissed = {
                 binding.etMap.visibility = View.VISIBLE
